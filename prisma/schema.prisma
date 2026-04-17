@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// MODELES 
+
+// Une demande de contact
+model ContactRequest {
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+
+  // Coordonnées
+  civility       String   // "Mme" ou "M"
+  lastName       String
+  firstName      String
+  email          String
+  phone          String
+
+  // Message
+  requestType    String   // "visite" | "rappel" | "photos"
+  message        String
+
+  // Relation vers les disponibilités
+  availabilities Availability[]
+}
+
+// Une disponibilité pour une visite
+model Availability {
+  id               String   @id @default(cuid())
+  day              String   // "Lundi", "Mardi", ...
+  hour             Int      // 0-23
+  minute           Int      // 0-59
+
+  contactRequest   ContactRequest @relation(fields: [contactRequestId], references: [id], onDelete: Cascade)
+  contactRequestId String
+}
