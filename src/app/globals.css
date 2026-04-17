@@ -1,26 +1,23 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  /* Champ arrondi "pill" utilisé pour tous les inputs */
+  .pill-input {
+    @apply w-full rounded-full bg-white/90 px-5 py-2.5 text-sm 
+           text-gray-700 placeholder-gray-400 outline-none 
+           transition focus:ring-2 focus:ring-orange-400;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Select arrondi "pill" pour les dropdowns des disponibilités */
+  .pill-select {
+    @apply rounded-full bg-white/90 px-4 py-2 text-sm text-gray-700 
+           outline-none appearance-none cursor-pointer 
+           focus:ring-2 focus:ring-orange-400;
+  }
+
+  /* Tag d'une disponibilité ajoutée (ex : "Lundi à 9h45 ✕") */
+  .dispo-tag {
+    @apply inline-flex items-center gap-3 rounded-full 
+           bg-white/80 px-4 py-1.5 text-sm text-gray-700 shadow-sm;
+  }
 }
