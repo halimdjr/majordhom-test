@@ -1,14 +1,14 @@
 @import "tailwindcss";
-
+@plugin "tailwind-scrollbar";
 @layer components {
-  /* Champ arrondi "pill" utilisé pour tous les inputs */
+  
   .pill-input {
     @apply w-full rounded-full bg-white/90 px-5 py-2.5 text-sm 
            text-gray-700 placeholder-gray-400 outline-none 
            transition focus:ring-2 focus:ring-orange-400;
   }
 
-  /* Select arrondi "pill" pour les dropdowns des disponibilités */
+  
   .pill-select {
     @apply rounded-full bg-white/90 px-4 py-2 text-sm text-gray-700 
            outline-none appearance-none cursor-pointer 
@@ -20,4 +20,18 @@
     @apply inline-flex items-center gap-3 rounded-full 
            bg-white/80 px-4 py-1.5 text-sm text-gray-700 shadow-sm;
   }
+
+  /* Scrollbar custom pour la liste des disponibilités */
+.dispos-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dispos-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dispos-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+}
 }

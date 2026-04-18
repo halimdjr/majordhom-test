@@ -18,10 +18,11 @@ export default function ContactForm() {
   register,
   handleSubmit,
   reset,
+  trigger,
   formState: { errors },
 } = useForm<ContactFormValues>({
   resolver: zodResolver(contactFormSchema),
-  mode: "onTouched",
+  mode: "onSubmit",
   defaultValues: {
     civility: undefined,
     lastName: "",
@@ -134,10 +135,9 @@ export default function ContactForm() {
                 <span className="text-sm">M</span>
               </label>
             </div>
-            {/* Erreur civilité */}
-            {errors.civility && (
-              <p className="text-xs text-orange-300 mb-2">{errors.civility.message}</p>
-            )}
+         {errors.civility && (
+  <p className="text-xs text-orange-300 mb-2">Veuillez sélectionner votre civilité</p>
+)}
 
             {/* Nom + Prénom */}
             <div className="grid grid-cols-2 gap-3 mb-1">
@@ -195,8 +195,8 @@ export default function ContactForm() {
               ))}
             </div>
             {errors.requestType && (
-              <p className="text-xs text-orange-300 mb-2">{errors.requestType.message}</p>
-            )}
+  <p className="text-xs text-orange-300 mb-2">Veuillez sélectionner un type de demande</p>
+)}
 
             {/* Message */}
             <textarea
@@ -208,7 +208,7 @@ export default function ContactForm() {
               {...register("message")}
             />
             {errors.message && (
-              <p className="text-xs text-red-300 mt-1 ml-2">{errors.message.message}</p>
+              <p className="text-xs text-orange-300 mt-1 ml-2">{errors.message.message}</p>
             )}
           </section>
         </div>
@@ -276,7 +276,9 @@ export default function ContactForm() {
           </div>
 
           {/* Tags des dispos */}
-          <div className="flex flex-col gap-2 items-start h-[72px] overflow-y-auto">
+        
+            <div className="flex flex-col gap-2 items-start max-h-[80px] overflow-y-auto h-[72px]
+                scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent pr-1">
             {dispos.map((d, i) => (
               <span key={i} className="dispo-tag">
                 {formatDispo(d)}
