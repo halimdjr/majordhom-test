@@ -108,7 +108,7 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="relative z-10 px-8 pt-7 pb-8 md:px-10 text-white"
+        className="relative z-10 px-8 pt-6 pb-7 md:px-10 text-white"
       >
         <h1 className="text-2xl md:text-3xl font-bold tracking-wide mb-6">
           CONTACTEZ L&apos;AGENCE
