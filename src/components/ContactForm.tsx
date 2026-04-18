@@ -234,8 +234,8 @@ export default function ContactForm() {
             <div className="relative">
               <select className="pill-select pr-7" value={hour}
                 onChange={e => setHour(e.target.value)}>
-                {Array.from({ length: 24 }, (_, i) => (
-                  <option key={i} value={i}>{i}h</option>
+                {Array.from({ length: 13 }, (_, i) => i + 8).map(h => (
+                  <option key={h} value={h}>{h}h</option>
                 ))}
               </select>
               <ChevronIcon />
