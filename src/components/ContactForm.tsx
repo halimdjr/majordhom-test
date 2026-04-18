@@ -97,7 +97,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+    <div className="relative overflow-hidden rounded-3xl shadow-[0_10px_20px_rgba(0,0,0,0.4)]">
 
       {/* Image de fond */}
       <div className="absolute inset-0 bg-cover bg-center"
@@ -108,22 +108,22 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="relative z-10 px-8 pt-6 pb-7 md:px-10 text-white"
+        className="relative z-10 px-8 pt-4 pb-4 md:px-10 text-white"
       >
-        <h1 className="text-2xl md:text-3xl font-bold tracking-wide mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-wide mb-6 mt-1">
           CONTACTEZ L&apos;AGENCE
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
           {/* COLONNE GAUCHE : VOS COORDONNÉES */}
           <section>
-            <h2 className="text-xs font-semibold tracking-widest mb-3">
+            <h2 className="text-xs font-semibold tracking-widest mb-5">
               VOS COORDONNÉES
             </h2>
 
             {/* Civilité */}
-            <div className="flex gap-6 mb-1">
+            <div className="flex gap-6 mb-3">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="radio" value="Mme" className="accent-white"
                   {...register("civility")} />
@@ -135,55 +135,63 @@ export default function ContactForm() {
                 <span className="text-sm">M</span>
               </label>
             </div>
-         {errors.civility && (
-  <p className="text-xs text-orange-300 mb-2">Veuillez sélectionner votre civilité</p>
-)}
+            {errors.civility && (
+              <p className="text-xs text-orange-300 ">Veuillez sélectionner votre civilité</p>
+        )}
 
             {/* Nom + Prénom */}
-            <div className="grid grid-cols-2 gap-3 mb-1">
+            <div className="grid grid-cols-2 gap-3 ">
               <div>
                 <input type="text" placeholder="Nom"
-                  className="pill-input" {...register("lastName")} />
-                {errors.lastName && (
-                  <p className="text-xs text-orange-300 mt-1 ml-2">{errors.lastName.message}</p>
-                )}
+                  className="pill-input max-w-[300px]" {...register("lastName")} />
+                <div className="h-4">
+                  {errors.lastName && (
+                    <p className="text-xs text-orange-300  ml-2">{errors.lastName.message}</p>
+                  )}
+                </div>
               </div>
               <div>
                 <input type="text" placeholder="Prénom"
                   className="pill-input" {...register("firstName")} />
-                {errors.firstName && (
-                  <p className="text-xs text-orange-300 mt-1 ml-2">{errors.firstName.message}</p>
-                )}
+                <div className="h-4">
+                  {errors.firstName && (
+                    <p className="text-xs text-orange-300  ml-2">{errors.firstName.message}</p>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Email */}
-            <div className="mb-1">
+            <div >
               <input type="email" placeholder="Adresse mail"
                 className="pill-input" {...register("email")} />
-              {errors.email && (
-                <p className="text-xs text-orange-300 mt-1 ml-2">{errors.email.message}</p>
-              )}
+              <div className="h-4">
+                {errors.email && (
+                  <p className="text-xs text-orange-300  ml-2">{errors.email.message}</p>
+                )}
+              </div>
             </div>
 
             {/* Téléphone */}
             <div>
               <input type="tel" placeholder="Téléphone"
                 className="pill-input" {...register("phone")} />
-              {errors.phone && (
-                <p className="text-xs text-orange-300 mt-1 ml-2">{errors.phone.message}</p>
-              )}
+              <div className="h-4">
+                {errors.phone && (
+                  <p className="text-xs text-orange-300  ml-2">{errors.phone.message}</p>
+                )}
+              </div>
             </div>
           </section>
 
           {/* COLONNE DROITE : VOTRE MESSAGE */}
           <section>
-            <h2 className="text-xs font-semibold tracking-widest mb-3">
+            <h2 className="text-xs font-semibold tracking-widest mb-5">
               VOTRE MESSAGE
             </h2>
 
             {/* Type de demande */}
-            <div className="flex flex-wrap gap-x-5 gap-y-2 mb-1">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
               {["visite", "rappel", "photos"].map((val, i) => (
                 <label key={val} className="flex items-center gap-2 cursor-pointer">
                   <input type="radio" value={val} className="accent-white"
@@ -195,26 +203,26 @@ export default function ContactForm() {
               ))}
             </div>
             {errors.requestType && (
-  <p className="text-xs text-orange-300 mb-2">Veuillez sélectionner un type de demande</p>
-)}
+              <p className="text-xs text-orange-300">Veuillez sélectionner un type de demande</p>
+            )}
 
             {/* Message */}
             <textarea
               placeholder="Votre message"
               rows={6}
-              className="w-full rounded-2xl bg-white px-5 py-3 text-sm
+              className="w-full rounded-2xl bg-white px-5 py-2.5 text-sm
                          text-gray-700 placeholder-gray-400 outline-none
-                         resize-none focus:ring-2 focus:ring-orange-400"
+                         resize-none focus:ring-2 focus:ring-orange-400 max-w-[500px]"
               {...register("message")}
             />
             {errors.message && (
-              <p className="text-xs text-orange-300 mt-1 ml-2">{errors.message.message}</p>
+              <p className="text-xs text-orange-300  ml-2">{errors.message.message}</p>
             )}
           </section>
         </div>
 
         {/* BAS : DISPONIBILITÉS + ENVOYER*/}
-        <div className="mt-6">
+        <div className="mt-5">
           <h2 className="text-xs font-semibold tracking-widest mb-3">
             DISPONIBILITÉS POUR UNE VISITE
           </h2>
@@ -222,8 +230,8 @@ export default function ContactForm() {
           <div className="flex flex-wrap items-center gap-2 mb-3">
 
             {/* Jour */}
-            <div className="relative">
-              <select className="pill-select pr-7" value={day}
+            <div className="relative mr-2">
+              <select className="pill-select " value={day}
                 onChange={e => setDay(e.target.value)}>
                 {DAYS.map(d => <option key={d}>{d}</option>)}
               </select>
@@ -231,8 +239,8 @@ export default function ContactForm() {
             </div>
 
             {/* Heure */}
-            <div className="relative">
-              <select className="pill-select pr-7" value={hour}
+            <div className="relative mr-2">
+              <select className="pill-select " value={hour}
                 onChange={e => setHour(e.target.value)}>
                 {Array.from({ length: 13 }, (_, i) => i + 8).map(h => (
                   <option key={h} value={h}>{h}h</option>
@@ -242,8 +250,8 @@ export default function ContactForm() {
             </div>
 
             {/* Minute */}
-            <div className="relative">
-              <select className="pill-select pr-7" value={min}
+            <div className="relative mr-2">
+              <select className="pill-select " value={min}
                 onChange={e => setMin(e.target.value)}>
                 {[0, 15, 30, 45].map(m => (
                   <option key={m} value={m}>{String(m).padStart(2,"0")}m</option>
@@ -254,18 +262,18 @@ export default function ContactForm() {
 
             {/* Bouton Ajouter */}
             <button type="button" onClick={addDispo}
-              className="rounded-full bg-[#3f1486] px-4 py-1.5 text-xs
+              className="rounded-full bg-[#3f1486] px-6 py-1.5 text-xs
                          font-semibold uppercase tracking-wider text-white
                          hover:brightness-110 transition leading-tight">
               Ajouter<br />Dispo
             </button>
 
             {/* Bouton Envoyer */}
-            <div className="ml-auto self-center">
+            <div className="ml-auto mr-10 self-center">
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="rounded-full bg-[#fbad18] px-8 py-2.5 text-sm
+                className="rounded-full bg-[#fbad18] px-15 py-2 text-sm
                            font-semibold uppercase tracking-wider text-white
                            shadow-md hover:brightness-105 disabled:opacity-60
                            disabled:cursor-not-allowed transition"
@@ -283,21 +291,27 @@ export default function ContactForm() {
               <span key={i} className="dispo-tag">
                 {formatDispo(d)}
                 <button type="button" onClick={() => removeDispo(i)}
-                  className="text-gray-400 hover:text-gray-700">✕</button>
+                  className="text-gray-600 hover:text-gray-800 font-bold pl-8">✕</button>
               </span>
             ))}
           </div>
 
           {/* Messages de retour après envoi */}
           {status === "success" && (
-            <p className="mt-4 text-sm text-green-300">
-              Votre demande a bien été envoyée !
-            </p>
+            <div className="mt-3 flex items-center gap-2 rounded-full bg-green-500/20 px-3 py-1 w-fit">
+              <span className="text-green-300 text-sm">✓</span>
+              <p className="text-sm text-green-300 font-medium">
+                Votre demande a bien été envoyée, nous vous recontactons rapidement !
+              </p>
+            </div>
           )}
           {status === "error" && (
-            <p className="mt-4 text-sm text-red-300">
-               {serverError ?? "Une erreur est survenue, veuillez réessayer."}
-            </p>
+            <div className="mt-3 flex items-center gap-2 rounded-full bg-red-500/20 px-4 py-2 w-fit">
+              <span className="text-red-300 text-lg">✕</span>
+              <p className="text-sm text-red-300 font-medium">
+                {serverError ?? "Une erreur est survenue, veuillez réessayer."}
+              </p>
+            </div>
           )}
 
         </div>
